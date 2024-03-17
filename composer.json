@@ -1,0 +1,18 @@
+{
+    "name": "antley/eloquent-ai",
+    "description": "A eloquent style syntax for OpenAI and (eventually) other AI's",
+    "type": "laravel-plugin",
+    "license": "GPL-2.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Antley\\EloquentAi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ashley Johnson"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "require": {}
+}
