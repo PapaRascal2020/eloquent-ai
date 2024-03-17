@@ -73,7 +73,7 @@ class Completion implements CompletionsDriver
                 'model' => $this->model,
                 'system' => $this->systemMessage,
                 'messages' => $this->messages
-            ])->json('choices.0.message.content');
+            ])->json('content.0.text');
 
 
         $this->messages[] = [
@@ -89,20 +89,7 @@ class Completion implements CompletionsDriver
      */
     public function fetchStreamed(): array
     {
-        $response = (new StreamedResponse)->withToken($this->token)
-            ->post(' https://api.anthropic.com/v1/messages', [
-                'model' => $this->model,
-                'system' => $this->systemMessage,
-                'messages' => $this->messages,
-                'stream' => true
-            ])->streamedResponse();
-
-        $this->messages[] = [
-            'role' => 'assistant',
-            'content' => $response
-        ];
-
-        return $this->messages;
+        return $this->fetch();
     }
 
     /**
