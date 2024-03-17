@@ -19,11 +19,11 @@ class Completion implements CompletionsDriver
     /**
      * @var string
      */
-    protected string $model = 'claude-2.1';
+    protected string $model = 'claude-3-opus-20240229';
     /**
      * @var array|string[]
      */
-    protected array $allowedModels = ['claude-2.1', 'claude-3-opus-20240229', 'claude-3-sonnet-20240229', 'claude-3-haiku-20240307'];
+    protected array $allowedModels = ['claude-3-opus-20240229', 'claude-3-sonnet-20240229', 'claude-3-haiku-20240307'];
 
     /**
      * @param string $model
@@ -68,12 +68,15 @@ class Completion implements CompletionsDriver
      */
     public function fetch(): array
     {
-        $response = Http::withToken($this->token)
-            ->post('https://api.anthropic.com/v1/messages', [
-                'model' => $this->model,
-                'system' => $this->systemMessage,
-                'messages' => $this->messages
-            ])->json();
+        $response = Http::withHeaders([
+            "anthropic-version" => "2023-06-01",
+            "x-api-key" => $this->token
+        ])->post('https://api.anthropic.com/v1/messages', [
+            'model' => $this->model,
+            'system' => $this->systemMessage,
+            'max_tokens' => 1024,
+            'messages' => $this->messages
+        ])->json('content.0.text');
 
 
         $this->messages[] = [
