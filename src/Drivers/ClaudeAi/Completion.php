@@ -43,7 +43,7 @@ class Completion implements CompletionsDriver
      */
     public function withInstruction(string $message): static
     {
-        $this->systemMessage = $message
+        $this->systemMessage = $message;
 
         return $this;
     }
