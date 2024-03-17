@@ -78,7 +78,7 @@ return  EloquentAi::completion()->create([
     ['role' => 'assistant', 'content' => 'Why hello there! How can I help?'],
     ['role' => 'user', 'content' => 'Are you the bot from Minstral AI or Open AI?'],
 ])->withInstruction("You are a friendly AI assistant")
-->useModel("gpt-4")
+->useModel("gpt-4") // <-- This line is optional but is here to show you you can change model.
 ->fetch();
 ```
 ##### Image (Image From Text)
