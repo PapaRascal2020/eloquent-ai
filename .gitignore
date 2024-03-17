@@ -1,3 +1,4 @@
 
 vendor/composer/ClassLoader.php
 .idea/workspace.xml
+.idea/vcs.xml
