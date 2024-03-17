@@ -73,7 +73,7 @@ class Completion implements CompletionsDriver
                 'model' => $this->model,
                 'system' => $this->systemMessage,
                 'messages' => $this->messages
-            ])->json('content.0.text');
+            ])->json();
 
 
         $this->messages[] = [
