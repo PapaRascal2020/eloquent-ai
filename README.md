@@ -85,7 +85,7 @@ return  EloquentAi::completion()->create([
 
 ```php
 return EloquentAi::image()->create([
-    'prompt' => 'A guy on a jet ski looking towards brighton united kingdom',
+    'prompt' => 'A guy on a jet ski looking towards brighton',
     'size' => '512x512',
     'n' => 1 
 ])->fetch();
@@ -94,7 +94,7 @@ return EloquentAi::image()->create([
 
 ```php
 return EloquentAi::audio()->create([
-    'input' => 'Hello Anton, this is my audio generation',
+    'input' => 'Hello, this is my audio generation',
     'voice' => 'alloy'
 ])->fetch();
 ```
