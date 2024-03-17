@@ -10,7 +10,7 @@ Well, at the moment it is a wrapper for OpenAI (four services) and MinstralAI (o
 The aim of this project is to create a package where switching the AI provider does not mean
 a huge rewrite of code.
 
-This will be achieved by created a common syntax for calling different models/ai similar to eloquent.
+This will be achieved by created a common syntax for calling different Ai's and change models in a way that is similar to eloquent.
 Examples of the syntax are at the bottom of this readme.
 
 > [!CAUTION]
@@ -66,7 +66,7 @@ ELOQUENT_AI_PROVIDER_TOKEN=YOUR_TOKEN_HERE
 ELOQUENT_AI_FALLBACK_PROVIDER=OpenAi
 ELOQUENT_AI_FALLBACK_PROVIDER_TOKEN=YOUR_TOKEN_HERE
 ```
-What this will do is when your provider does not support a method it van use the fallback and call that instead.
+What this will do is when your provider does not support a method it can use the fallback and call that instead.
 
 #### Example Syntax:
 
