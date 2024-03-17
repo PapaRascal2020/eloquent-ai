@@ -17,6 +17,9 @@ return [
         ],
         'MinstralAi' => [
             'Completion' // Chat
+        ],
+        'ClaudeAi' => [
+            'Completion' // Chat
         ]
     ],
 
