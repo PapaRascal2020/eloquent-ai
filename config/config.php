@@ -55,6 +55,13 @@ return [
                     'open-ai.text-embedding-3-large',
                     'open-ai.text-embedding-ada-002',
                 ]
+            ],
+            'moderate' => [
+                'models' => [
+                    'open-ai.text-moderation-latest	',
+                    'open-ai.text-moderation-stable',
+                    'open-ai.text-moderation-007',
+                ]
             ]
         ]
     ]
