@@ -8,7 +8,7 @@
 ## Eloquent AI for Laravel
 An eloquent approach to AI in Laravel.
 
-![Latest Version](https://img.shields.io/badge/Version-0.0.2-blue)
+![Latest Version](https://img.shields.io/badge/Version-0.0.3-blue)
 ![Stability](https://img.shields.io/badge/Stability-alpha-red)
 
 ### About
