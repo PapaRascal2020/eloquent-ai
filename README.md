@@ -27,8 +27,14 @@ Inspired by Eloquent ORM, Eloquent AI provides a wrapper for interacting with AI
   - text-embedding-3-small
   - text-embedding-3-large
   - text-embedding-ada-002
+  - text-moderation-latest
+  - text-moderation-stable
+  - text-moderation-007
 - Mistral AI
   - mistral-small-latest
+  - mistral-medium-latest
+  - mistral-large-latest
+  - open-mistral-7b
   - mistral-embed
 - Claude AI
    - claude-3-opus-20240229
@@ -45,11 +51,11 @@ Examples of the syntax are at the bottom of this readme.
 
 ### Installation
 
-First you will need to use an existing or new Laravel app.
+In your Laravel app do the following:
 
-Go to `composer.json` file and add the following to the `repositories` section:
+In `composer.json` add the following repository to the `repositories` section:
 
-```array
+```php
 "repositories": [
     {
         "type": "vcs",
@@ -57,46 +63,58 @@ Go to `composer.json` file and add the following to the `repositories` section:
     }
 ],
 ```
-Then in the required section add the following:
+Then add the following to the `require` section.
 
 ```array
     "antley/eloquent-ai": "dev-main"
 ```
 
-Then in the `config/app.php` providers array add the following `ServiceProvidder`:
+Save `composer.json`
+
+Then, open `config/app.php` and add the following to `ServiceProvider`:
 
 ```php
 \Antley\EloquentAi\EloquentAiServiceProvider::class,
 ```
 
-Finally run  in the terminal:
+Once this is done, open the terminal and type the following:
 
 ```bash
  composer update
 ```
 
+That's it! You are now ready to use the package.
+
 ### Getting Started
 
-For defaults, an account with OpenAI (https://platform.openai.com) is needed.
+There are six services and they are:
+
+- **Completions** - _To chat with AI_
+- **Embedding** - _To create vector representations of your text_
+- **Image** - _To generate images by user input._
+- **Audio** - _Take text and convert to audio_
+- **Transcription** - _Take an audio file and return text_
+- **Moderation** - _Moderate a string of text (i.e Comment) for harmful content_
+
+Currently, Open AI offers all of them where as Claude AI & Mistral AI are for some.
+To get the best out of this plugin you will need at least an Open AI api key, you 
+can get this by going to https://platform.openai.com and registering an account.
 
 For Mistral AI (https://console.mistral.ai/) & Claude AI (https://console.anthropic.com/)
 models you would need to get sign up on the relevant sites (above)
 
-Currently OpenAI's Provider supports all four methods that currently exist in this package
-whereas Mistral AI & Claude AI is only compatible with `completions`. 
-
-To start update your `.env` file with the following fields.
+Start by updating your `.env` file with the following fields.
 
 ```dotenv
 ELOQUENT_AI_CLAUDEAI_TOKEN=YOUR_CLAUDEAI_API_TOKEN (Optional - if you want to use its models)
 ELOQUENT_AI_OPENAI_TOKEN=YOUR_OPENAI_API_TOKEN (Required)
 ELOQUENT_AI_MISTRALAI_TOKEN=YOUR_MISTRALAI_API_TOKEN (optional - if you want to use its models)
 ```
-That's it you can now call the services.
+You are now ready to use the examples below to create your AI calls.
 
-#### Example Syntax:
+#### Examples:
 
-##### Completion (Chat)
+##### Completion
 
 ```php
 return  EloquentAi::completion()->create([
@@ -133,11 +151,66 @@ return EloquentAi::audio()->create([
     'voice' => 'alloy'
 ])->fetch();
 ```
+
 ##### Transcription (Speech To Text)
 
 ```php
 return EloquentAi::transcription()->create([
     'file' => public_path('/harvard.wav')
 ])->fetch();
+```
+###### Example Response
+```json
+{
+  "text":"The stale smell of old beer lingers. It takes heat to bring out the odor. A cold dip restores health and zest. A salt pickle tastes fine with ham. Tacos al pastor are my favorite. A zestful food is the hot cross bun."
+}
+```
+
+##### Moderation 
+This is a service where you feed it text from a comment for example and it will return 
+with an array of boolean values for certain moderation points.
+
+```php
+return EloquentAi::moderate()
+->create('This is an example thread with no bad content')
+->fetch();
+```
+###### Example Response
+
+```json
+{
+  "id":"modr-94DxgkEGhw7yJDlq8oCrLOVXnqli5",
+  "model":"text-moderation-007",
+  "results":[
+    {
+      "flagged":true,
+      "categories":{
+        "sexual":false,
+        "hate":false,
+        "harassment":true,
+        "self-harm":false,
+        "sexual\/minors":false,
+        "hate\/threatening":false,
+        "violence\/graphic":false,
+        "self-harm\/intent":false,
+        "self-harm\/instructions":false,
+        "harassment\/threatening":false,
+        "violence":false
+      },
+      "category_scores":{
+        "sexual":0.02169245481491089,
+        "hate":0.024598680436611176,
+        "harassment":0.9903337359428406,
+        "self-harm":5.543852603295818e-5,
+        "sexual\/minors":2.5174302209052257e-5,
+        "hate\/threatening":2.9870452635805123e-6,
+        "violence\/graphic":6.8601830207626335e-6,
+        "self-harm\/intent":0.0002317160106031224,
+        "self-harm\/instructions":0.00011696072033373639,
+        "harassment\/threatening":1.837775380408857e-5,
+        "violence":0.00020553809008561075
+      }
+    }
+  ]}
 ```
 
