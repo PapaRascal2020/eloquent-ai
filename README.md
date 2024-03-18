@@ -65,10 +65,9 @@ Then in the `config/app.php` providers array add the following `ServiceProvidder
 Last but not least add the following items to your `.env` file:
 
 ```dotenv
-ELOQUENT_AI_PROVIDER=
-ELOQUENT_AI_PROVIDER_TOKEN=
-ELOQUENT_AI_FALLBACK_PROVIDER=
-ELOQUENT_AI_FALLBACK_PROVIDER_TOKEN=
+ELOQUENT_AI_CLAUDEAI_TOKEN=YOUR_CLAUDEAI_API_TOKEN
+ELOQUENT_AI_OPENAI_TOKEN=YOUR_OPENAI_API_TOKEN
+ELOQUENT_AI_MISTRALAI_TOKEN=YOUR_MISTRALAI_API_TOKEN
 ```
 
 ### Getting Started
