@@ -33,7 +33,7 @@ Go to `composer.json` file and add the following to the `repositories` section:
 Then in the required section add the following:
 
 ```array
-    "antley/eloquent-ai": "^0.0.1"
+    "antley/eloquent-ai": "^0.0.2"
 ```
 
 Then in the `config/app.php` providers array add the following `ServiceProvidder`:
