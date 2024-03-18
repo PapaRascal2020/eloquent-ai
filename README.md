@@ -65,14 +65,6 @@ Then in the `config/app.php` providers array add the following `ServiceProvidder
 \Antley\EloquentAi\EloquentAiServiceProvider::class,
 ```
 
-Last but not least add the following items to your `.env` file:
-
-```dotenv
-ELOQUENT_AI_CLAUDEAI_TOKEN=YOUR_CLAUDEAI_API_TOKEN
-ELOQUENT_AI_OPENAI_TOKEN=YOUR_OPENAI_API_TOKEN
-ELOQUENT_AI_MISTRALAI_TOKEN=YOUR_MISTRALAI_API_TOKEN
-```
-
 ### Getting Started
 
 For defaults, an account with OpenAI (https://platform.openai.com) is needed.
@@ -81,14 +73,14 @@ For Mistral AI (https://console.mistral.ai/) & Claude AI (https://console.anthro
 models you would need to get sign up on the relevant sites (above)
 
 Currently OpenAI's Provider supports all four methods that currently exist in this package
-whereas Mistral AI & Claude AIis only compatible with `completions`. 
+whereas Mistral AI & Claude AI is only compatible with `completions`. 
 
 To start update your `.env` file with the following fields.
 
 ```dotenv
-ELOQUENT_AI_CLAUDEAI_TOKEN=YOUR_CLAUDEAI_API_TOKEN
-ELOQUENT_AI_OPENAI_TOKEN=YOUR_OPENAI_API_TOKEN
-ELOQUENT_AI_MISTRALAI_TOKEN=YOUR_MISTRALAI_API_TOKEN
+ELOQUENT_AI_CLAUDEAI_TOKEN=YOUR_CLAUDEAI_API_TOKEN (Optional - if you want to use its models)
+ELOQUENT_AI_OPENAI_TOKEN=YOUR_OPENAI_API_TOKEN (Required)
+ELOQUENT_AI_MISTRALAI_TOKEN=YOUR_MISTRALAI_API_TOKEN (optional - if you want to use its models)
 ```
 That's it you can now call the services.
 
