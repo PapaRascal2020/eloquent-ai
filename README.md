@@ -24,8 +24,12 @@ Inspired by Eloquent ORM, Eloquent AI provides a wrapper for interacting with AI
   - dall-e-2
   - dall-e-3
   - whisper-1
+  - text-embedding-3-small
+  - text-embedding-3-large
+  - text-embedding-ada-002
 - Mistral AI
   - mistral-small-latest
+  - mistral-embed
 - Claude AI
    - claude-3-opus-20240229
    - claude-3-sonnet-20240229
@@ -65,6 +69,12 @@ Then in the `config/app.php` providers array add the following `ServiceProvidder
 \Antley\EloquentAi\EloquentAiServiceProvider::class,
 ```
 
+Finally run  in the terminal:
+
+```bash
+ composer update
+```
+
 ### Getting Started
 
 For defaults, an account with OpenAI (https://platform.openai.com) is needed.
@@ -97,6 +107,15 @@ return  EloquentAi::completion()->create([
 ->use("open-ai.gpt-4") // <-- Not required, defaults to 'open-ai.gpt-3.5-turbo'..
 ->fetch();
 ```
+
+##### Embedding
+
+```php
+return EloquentAi::embedding()->create([
+        'This is a sample embedding'
+    ])->use('mistral-ai.mistral-embed')->fetch();
+```
+
 ##### Image (Image From Text)
 
 ```php
