@@ -91,7 +91,7 @@ class Completion implements CompletionService
             ->post($this->endpoints[$this->service], [
                 'model' => $this->model,
                 'max_tokens' => 1024,
-                'messages' => $this->payload['messages']
+                ...$this->payload
             ])->json();
 
         return $response;
@@ -106,7 +106,7 @@ class Completion implements CompletionService
             ->post($this->endpoints[$this->service], [
                 'model' => $this->model,
                 'max_tokens' => 1024,
-                'messages' => $this->payload['messages'],
+                $this->payload,
             ])->streamedResponse();
 
         return $response;

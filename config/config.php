@@ -47,6 +47,14 @@ return [
                 'models' => [
                     'open-ai.whisper-1'
                 ]
+            ],
+            'embedding' => [
+                'models' => [
+                    'mistral-ai.mistral-embed',
+                    'open-ai.text-embedding-3-small',
+                    'open-ai.text-embedding-3-large',
+                    'open-ai.text-embedding-ada-002',
+                ]
             ]
         ]
     ]
