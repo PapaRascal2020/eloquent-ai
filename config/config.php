@@ -26,6 +26,9 @@ return [
                     'open-ai.gpt-3.5-turbo',
                     'open-ai.gpt-4',
                     'mistral-ai.mistral-small-latest',
+                    'mistral-ai.mistral-medium-latest',
+                    'mistral-ai.mistral-large-latest',
+                    'mistral-ai.open-mistral-7b',
                     'claude-ai.claude-3-opus-20240229',
                     'claude-ai.claude-3-sonnet-20240229',
                     'claude-ai.claude-3-haiku-20240307'
