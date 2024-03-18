@@ -8,9 +8,8 @@
 ## Eloquent AI for Laravel
 An eloquent approach to AI in Laravel.
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/antley/eloquent-ai.svg?style=flat-square)](https://packagist.org/packages/antley/eloquent-ai)
-[![Total Downloads](https://img.shields.io/packagist/dt/antley/eloquent-ai.svg?style=flat-square)](https://packagist.org/packages/antley/eloquent-ai)
-[![Latest Version]()]
+![Latest Version](https://img.shields.io/badge/Version-0.0.2-blue)
+![Stability](https://img.shields.io/badge/Stability-alpha-red)
 
 ### About
 Inspired by Eloquent ORM, Eloquent AI provides a wrapper for interacting with AI.
