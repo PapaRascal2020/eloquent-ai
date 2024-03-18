@@ -1,26 +1,39 @@
 <?php
 
-namespace Antley\EloquentAi\Drivers\OpenAi;
+namespace Antley\EloquentAi\Services;
 
-use Antley\EloquentAi\Drivers\Driver;
+use Antley\EloquentAi\Interfaces\Service;
 use Illuminate\Support\Facades\Http;
 
-class Image implements Driver
+class Image implements Service
 {
-    protected string $model = "dall-e-2";
-    protected array $args = [];
-    protected array $allowedModels = ['dall-e-2', 'dall-e-3'];
+    // Supported Model Endpoints
+    protected array $endpoints = [
+        'open-ai' => 'https://api.openai.com/v1/images/generations'
+    ];
 
+    protected array $args = [];
     protected array $allowedArgs = ['prompt', 'size', 'quality', 'n'];
+
+    // The default service & model when none specified
+    protected string $service = 'open-ai';
+    protected string $model = 'dall-e-2';
+
+    // The allowed models
+    protected array $allowedModels = [];
 
     /**
      * @param string $model
      * @return $this
      */
-    public function useModel(string $model): static
+    public function use(string $model): static
     {
         if (in_array($model, $this->allowedModels)) {
-            $this->model = $model;
+
+            $parts = explode('.', $model);
+
+            $this->service = $parts[0];
+            $this->model = $parts[1];
         }
         return $this;
     }
@@ -40,11 +53,11 @@ class Image implements Driver
      */
     public function fetch(): array
     {
-        return Http::withToken($this->token)
-            ->post('https://api.openai.com/v1/images/generations', [
+        return Http::withHeaders(config("eloquent-ai.config.headers.{$this->service}"))
+            ->post($this->endpoints[$this->service], [
                 'model' => $this->model,
                 ...$this->args
-            ])->json('data.0');
+            ])->json();
     }
 
     /**
@@ -64,9 +77,12 @@ class Image implements Driver
         return $filtered;
     }
 
+
     /**
      * @param string $token
      */
-    public function __construct(protected string $token)
-    {}
+    public function __construct()
+    {
+        $this->allowedModels = config('eloquent-ai.config.services.image.models');
+    }
 }

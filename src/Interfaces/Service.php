@@ -1,13 +1,13 @@
 <?php
 
-namespace Antley\EloquentAi\Drivers;
+namespace Antley\EloquentAi\Interfaces;
 
-interface Driver
+interface Service
 {
     /**
      * @param string $token
      */
-    public function __construct(string $token);
+    public function __construct();
 
     /**
      * @param string $model
@@ -15,7 +15,7 @@ interface Driver
      *
      * This is to specify the model (optional)
      */
-    public function useModel(string $model):static;
+    public function use(string $model):static;
 
     /**
      * @param array $args
@@ -24,9 +24,8 @@ interface Driver
     public function create(array $args): static;
 
     /**
-     * @return array|string
+     * @return mixed
      */
-    public function fetch(): array | string;
-
+    public function fetch(): mixed;
 
 }

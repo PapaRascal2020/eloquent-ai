@@ -1,3 +1,6 @@
+> [!CAUTION]
+> This package is in very early development and should not be on a production server.
+
 > [!NOTE]  
 > If you are interested in this idea and can help contribute please don't hesitate to 
 > do so and create a pull request =)
@@ -5,16 +8,33 @@
 ## Eloquent AI for Laravel
 An eloquent approach to AI in Laravel.
 
-### What does this package do?
-Well, at the moment it is a wrapper for OpenAI (four services) and MinstralAI (one service).
-The aim of this project is to create a package where switching the AI provider does not mean
-a huge rewrite of code.
+### About
+Inspired by Eloquent ORM, Eloquent AI provides a wrapper for interacting with AI.
 
-This will be achieved by created a common syntax for calling different Ai's and change models in a way that is similar to eloquent.
+**AI Models Supported:**
+
+- Open Ai
+  - gpt-3.5-turbo
+  - gpt-4
+  - tts-1
+  - tts-1-hd
+  - dall-e-2
+  - dall-e-3
+  - whisper-1
+- Mistral AI
+  - mistral-small-latest
+- Claude AI
+   - claude-3-opus-20240229
+   - claude-3-sonnet-20240229
+   - claude-3-haiku-20240307
+
+The aim of this project is to create a package where switching between
+AIs and there models as simple as possible.
+
+This will be achieved by created a common syntax for calling different services
+(Completions, Text To Speech, Speech To Text, Text To Image) in a way that is similar to eloquent.
+
 Examples of the syntax are at the bottom of this readme.
-
-> [!CAUTION]
-> This package is in very early development and should not be on a production server. 
 
 ### Installation
 
@@ -33,7 +53,11 @@ Go to `composer.json` file and add the following to the `repositories` section:
 Then in the required section add the following:
 
 ```array
+<<<<<<< Updated upstream
     "antley/eloquent-ai": "^0.0.2"
+=======
+    "antley/eloquent-ai": "dev-main"
+>>>>>>> Stashed changes
 ```
 
 Then in the `config/app.php` providers array add the following `ServiceProvidder`:
@@ -53,20 +77,22 @@ ELOQUENT_AI_FALLBACK_PROVIDER_TOKEN=
 
 ### Getting Started
 
-To get started you need to be signed up with either OpenAI (https://platform.openai.com)
-or Minstral AI (https://console.mistral.ai/) - You can have both.
+For defaults, an account with OpenAI (https://platform.openai.com) is needed.
+
+For Mistral AI (https://console.mistral.ai/) & Claude AI (https://console.anthropic.com/)
+models you would need to get sign up on the relevant sites (above)
 
 Currently OpenAI's Provider supports all four methods that currently exist in this package
-whereas MinstralAI is only compatible with `completions`. You can, however if you want to use
-MinstralAI for completions but OpenAI for others you can do the following in the `.env`:
+whereas Mistral AI & Claude AIis only compatible with `completions`. 
+
+To start update your `.env` file with the following fields.
 
 ```dotenv
-ELOQUENT_AI_PROVIDER=MinstralAi
-ELOQUENT_AI_PROVIDER_TOKEN=YOUR_TOKEN_HERE
-ELOQUENT_AI_FALLBACK_PROVIDER=OpenAi
-ELOQUENT_AI_FALLBACK_PROVIDER_TOKEN=YOUR_TOKEN_HERE
+ELOQUENT_AI_CLAUDEAI_TOKEN=YOUR_CLAUDEAI_API_TOKEN
+ELOQUENT_AI_OPENAI_TOKEN=YOUR_OPENAI_API_TOKEN
+ELOQUENT_AI_MISTRALAI_TOKEN=YOUR_MISTRALAI_API_TOKEN
 ```
-What this will do is when your provider does not support a method it can use the fallback and call that instead.
+That's it you can now call the services.
 
 #### Example Syntax:
 
@@ -78,7 +104,7 @@ return  EloquentAi::completion()->create([
     ['role' => 'assistant', 'content' => 'Why hello there! How can I help?'],
     ['role' => 'user', 'content' => 'Are you the bot from Minstral AI or Open AI?'],
 ])->withInstruction("You are a friendly AI assistant")
-->useModel("gpt-4") // <-- This line is optional but is here to show you you can change model.
+->use("open-ai.gpt-4") // <-- Not required, defaults to 'open-ai.gpt-3.5-turbo'..
 ->fetch();
 ```
 ##### Image (Image From Text)

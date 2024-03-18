@@ -7,13 +7,13 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class StreamedResponse
 {
-    protected string $token;
+    protected string $headers;
     protected string $url;
     protected array $data;
 
-    public function withToken(string $token): static
+    public function withHeaders(array $headers): static
     {
-        $this->token = $token;
+        $this->headers = $headers;
 
         return $this;
     }
@@ -32,7 +32,7 @@ class StreamedResponse
 
         $headers = [
             'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . $this->token,
+            ...$this->headers
         ];
 
         $body = json_encode($this->data);

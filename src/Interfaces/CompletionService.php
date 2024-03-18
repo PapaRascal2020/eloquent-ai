@@ -1,8 +1,8 @@
 <?php
 
-namespace Antley\EloquentAi\Drivers;
+namespace Antley\EloquentAi\Interfaces;
 
-interface CompletionsDriver extends Driver
+interface CompletionService extends Service
 {
     /**
      * @param string $message
