@@ -53,11 +53,7 @@ Go to `composer.json` file and add the following to the `repositories` section:
 Then in the required section add the following:
 
 ```array
-<<<<<<< Updated upstream
-    "antley/eloquent-ai": "^0.0.2"
-=======
     "antley/eloquent-ai": "dev-main"
->>>>>>> Stashed changes
 ```
 
 Then in the `config/app.php` providers array add the following `ServiceProvidder`:
