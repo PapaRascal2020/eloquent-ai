@@ -1,4 +1,7 @@
 > [!CAUTION]
+> The package has moved and this repo has been archived: please visit https://github.com/PapaRascal2020/sidekick to keep using this package.
+
+> [!CAUTION]
 > This package is in very early development and should not be on a production server.
 
 > [!NOTE]  
